@@ -8,6 +8,7 @@ const config = require('./config/config');
 
 const app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect(config.database, err => {
     if (!err) {
         console.log(`successfully connected to the database`);
@@ -26,7 +27,7 @@ app.get('/', (req, res, next) => {
     })
 })
 
-const port = 2018;
+// const port = 2018;
 
 
 app.listen(config.port, _ => {
