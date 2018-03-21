@@ -16,13 +16,15 @@ import { HomeComponent } from './home/home.component';
 import { JApiService } from './services/j-api.service';
 import { MessageComponent } from './message/message.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MessageComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
