@@ -37,10 +37,10 @@ UserSchema.pre('save', function(next) {
 });
 
 
-UserSchema.methods.comparePassword = (password) => {
-   bcrypt.compareSync(this.password, password);
-   
+UserSchema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);  
 };
+ 
 
 UserSchema.methods.jAvatar = (size) => {
     if (!this.size) size = 200;
