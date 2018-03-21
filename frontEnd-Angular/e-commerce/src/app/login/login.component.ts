@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   validate() {
     if (this.email) {
-       if (this.password ){
+       if (this.password ) {
          return true;
        } else {
          this.data.error('Password is required');
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       );
       if (data['success']) {
         localStorage.setItem('token', data['token']);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       } else {
         this.data.error(data['message']);
       }
