@@ -15,12 +15,14 @@ const UserSchema = new Schema({
         adrs2: String,
         street: String,
         city: String,
-        state?: String,
+        state: String,
         country: String,
         postalCode: String
     },
     created: { type: Date, default: Date.now()  }
 })
+
+// why not using function () {} instead of () => {}  :)
 
 UserSchema.pre('save', function(next) {
     let user = this;
@@ -35,11 +37,12 @@ UserSchema.pre('save', function(next) {
 });
 
 
-UserSchema.method.comparePasswords = function (password) {
-    return bcrypt.compareSync(password, this.password);
+UserSchema.methods.comparePassword = (password) => {
+   bcrypt.compareSync(this.password, password);
+   
 };
 
-UserSchema.method.jAvatar = function (size) {
+UserSchema.methods.jAvatar = (size) => {
     if (!this.size) size = 200;
     if (!this.email) {
         return `https://gravatar.com/avatar/?s${size}&d=retro`;
@@ -48,5 +51,6 @@ UserSchema.method.jAvatar = function (size) {
         return `https://gravatar.com/avatar/${md5}?s${size}&d=retro`;
     }
 };
+
 
 module.exports = mongoose.model('User', UserSchema);
