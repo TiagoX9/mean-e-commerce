@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.guard';
 import { DataService } from './services/data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,7 +35,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ JApiService, DataService ],
+  providers: [ JApiService, DataService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

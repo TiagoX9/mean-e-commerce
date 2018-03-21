@@ -64,12 +64,14 @@ export class RegisterComponent implements OnInit {
         if (data['success']) {
           localStorage.setItem('token', data['token']);
           this.data.success('Succesfully registered');
+          this.router.navigate(['/']);
         } else {
           this.data.error(data['message']);
         }
 
       }
     } catch (error) {
+      console.log('succes');
       this.data.error(error['message']);
     }
 

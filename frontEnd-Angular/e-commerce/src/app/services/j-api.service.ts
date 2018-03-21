@@ -16,6 +16,6 @@ export class JApiService {
   }
 
   postData (link: string, body: any) {
-    return this.http.post(link, body, { headers: this.getHeaders() });
+    return this.http.post(link, body, { headers: this.getHeaders() }).toPromise();
   }
 }
