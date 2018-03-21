@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
     this.btnDisabled = true;
     try {
       if (this.validate()) {
-        const link = '127.0.0.1:2018/api/account/signup';
+        const link = 'http://127.0.0.1:2018/api/account/signup';
         const data = await this.api.postData(link,
           {
           name: this.name,
