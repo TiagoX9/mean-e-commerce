@@ -93,6 +93,37 @@ router.route('/profile')
         })
 
     })
+});
+
+router.route('/address')
+.get(checkJWT, (req, res, next) => {
+    User.findOne({ _id: req.decoded.user._id }, (err, user) => {
+        res.json({
+            success: true,
+            address: user.address,
+            message: 'Succesfull'
+        });
+    });
 })
+.post(checkJWT, (req, res, next) => {
+    User.findOne({ _id: req.decoded.user._id }, (err, user) => {
+        if (err) return next(err);
+
+        if (req.body.adrs1) user.address.adrs1 = req.body.adrs1;
+        if (req.body.adrs2) user.address.adrs2 = req.body.adrs2;
+        if (req.body.street) user.address.street = req.body.street;
+        if (req.body.city) user.address.city = req.body.city;
+        if (req.body.state) user.address.state = req.body.state;
+        if (req.body.country) user.address.country = req.body.country;
+        if (req.body.postalCode) user.address.postalCode = req.body.postalCode;
+
+        user.save();
+        res.json({
+            success: true,
+            message: 'changed the address information'
+        })
+    })
+})
+
 
 module.exports = router;
