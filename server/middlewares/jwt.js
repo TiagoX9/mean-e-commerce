@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
                 res.json({
                     success: false,
                     message: 'Failed to authenticate the token'
-                })
+                });
             } else {
                 req.decoded = decoded;
                 next();
@@ -24,5 +24,5 @@ module.exports = function (req, res, next) {
             success: false,
             message: 'No token found'
         })
-    }
-}
+    };
+};

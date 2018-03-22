@@ -1,5 +1,6 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
+const checkJWT = require('../middlewares/jwt');
 const config = require("../config/config");
 const User = require("../models/user");
 
@@ -24,9 +25,7 @@ router.post('/signup', (req, res, next) => {
     } else {
       user.save();
 
-      const token = jwt.sign({ user: user }, config.secret, {
-        expiresIn: "7d"
-      });
+      const token = jwt.sign({ user: user }, config.secret, { expiresIn: "7d" });
       res.json({
         success: true,
         message: "Token works",
@@ -39,7 +38,6 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res) => {
 
-
     User.findOne( { email: req.body.email }, (err, user) => {
         if (err) console.log(`error happenned again : ${err}`);
 
@@ -49,7 +47,6 @@ router.post('/login', (req, res) => {
                 message: 'User againnnnnnnnnnnnn not found, try again.'
             });
         } else if (user)  {
-            // problem is in here
             const validPassword = user.comparePassword(req.body.password);
             if (!validPassword) {
                 res.json({
@@ -60,12 +57,26 @@ router.post('/login', (req, res) => {
                 const token = jwt.sign( { user: user }, config.secret, { expiresIn: '7d' });
                 res.json({
                     success: true,
-                    message: 'Token works , succesfully login',
+                    message: 'Token works, succesfully login',
                     token: token
                 });
             };
         }
     });
 });
+
+// this is easy way and much cleaner to combine post() and get() under route
+
+router.route('/profile')
+.get(checkJWT, (req, res, next) => {
+    User.findOne({ _id: req.decoded.user._id }, (err, user) => {
+        res.json({
+            success: true,
+            user: user,
+            message: 'Successfull'
+        });
+    });
+}) 
+.post()
 
 module.exports = router;
