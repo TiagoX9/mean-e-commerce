@@ -77,6 +77,22 @@ router.route('/profile')
         });
     });
 }) 
-.post()
+.post(checkJWT, (req, res, next) => {
+    User.findOne({ _id: req.decoded.user._id }, (err, user) => {
+        if (err) return next(err);
+
+        if (req.body.name) { user.name = req.body.name };
+        req.body.email ? user.email = req.body.email : null;
+        if (req.body.password) user.password = req.body.password;
+        user.isSeller = req.body.isSeller;
+
+        user.save()
+        res.json({
+            success: true,
+            message: 'Successfully edited'
+        })
+
+    })
+})
 
 module.exports = router;
