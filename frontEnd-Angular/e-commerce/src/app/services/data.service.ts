@@ -41,6 +41,7 @@ export class DataService {
       if (localStorage.getItem('token')) {
         const data = await this.api.getData('http://127.0.0.1:2018/api/account/profile');
         this.user = data['user'];
+        console.log('good');
       }
     } catch (err) {
       this.error(err);
@@ -48,3 +49,4 @@ export class DataService {
    }
 
 }
+

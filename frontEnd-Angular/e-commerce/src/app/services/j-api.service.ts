@@ -12,7 +12,7 @@ export class JApiService {
   }
 
   getData (link: string) {
-    return this.http.get(link, { headers: this.getHeaders() });
+    return this.http.get(link, { headers: this.getHeaders() }).toPromise();
   }
 
   postData (link: string, body: any) {

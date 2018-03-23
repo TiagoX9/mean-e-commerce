@@ -59,7 +59,7 @@ export class SettingComponent implements OnInit {
     this.btnDisabled = true;
     try {
       if (this.validate(this.currentSettings)) {
-        const data = await this.api.postData('http://127.0.0.1/api/account/profile', {
+        const data = await this.api.postData('http://127.0.0.1:2018/api/account/profile', {
           name: this.currentSettings['name'],
           email: this.currentSettings['email'],
           password: this.currentSettings['newPassword'],
