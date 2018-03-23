@@ -1,0 +1,38 @@
+<section class="profile">
+  <div class="container p-4">
+      <h3 class="display-4">Your profile on J commerce </h3>
+      <br>
+      <div *ngIf="!data.user" class="m-auto">
+        <h1 class="text-center display-3 mt-5" >
+          <i class="fa fa-spinner fa-spin">getting data</i>
+        </h1>
+      </div>
+
+      <div *ngIf="data.user" class="row mt-5">
+        <div class="col-md-3">
+          <img [src]="data.user.photo" alt="photoooooooooooooooo" class="rounded-circle image">
+        </div>
+        <hr>
+        <div class="col-md-8 ml-3">
+          <h6 class="lead name">{{ user.data.name }}</h6>
+          <a routerLink="/profile/orders" class="btn btn-warning" >My orders</a>
+          <br> 
+          <a routerLink="/profile/settings">Change your account settings</a>
+          <br>
+          <a routerLink="/profile/address">Change Shipping Adress</a>
+          <hr>
+
+            <div *ngIf="data.user.isSeller">
+              <p class="lead">About Seller</p>
+              <hr>
+              <div class="col-md-6 mb-2">
+                <a routerLink="/profile/postproduct" class="btn btn-success">Sell a product</a>
+              </div>
+              <div class="col-md-6">
+                <a routerLink="/profile/myproducts" class="btn btn-success">My products</a>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</section>
