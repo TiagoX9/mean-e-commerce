@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  // this is a bad way to validate I know, u should avoid, but this a demo
   validate () {
     if (this.name) {
       if (this.email) {
@@ -49,6 +50,7 @@ export class RegisterComponent implements OnInit {
 
 
  async register () {
+   // and this is also a bad way to torture button like that
     this.btnDisabled = true;
     try {
       if (this.validate()) {
