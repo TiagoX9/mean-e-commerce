@@ -1,0 +1,43 @@
+<section class="settings">
+  <div class="container p-4">
+    <h4 class="display"> Account Settings</h4>
+    <hr>
+    <app-message></app-message>
+    <div *ngIf="!currentSettings" class="m-auto ">
+      <h1 class="text-center display-3 mt-5">
+        <i class="fa fa-spinner fa-spin"> wait</i>
+      </h1>
+    </div>
+    <div *ngIf="currentSettings" class="card bg-light">
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label id="name" class="form-control-label">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="currentSettings.name">
+
+            <label id="email" class="form-control-label">Email</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="currentSettings.email">
+
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" name="isSeller" class="form-check-input" 
+                [(ngModel)]="currentSettings.isSeller"> is Seller?
+              </label>
+            </div>
+
+
+            <label id="newPassword" class="form-control-label">New Password</label>
+            <input type="password" class="form-control" name="newPassword" 
+            [(ngModel)]="currentSettings.newPassword">
+
+            <label id="passwordConfirm" class="form-control-label">Confirm Password</label>
+            <input type="password" class="form-control" name="passwordConfirm" 
+            [(ngModel)]="currentSettings.passwordConfirm">
+          </div>
+          <button type="button" class="btn btn-dark" (click)="update()" 
+          [disabled]="btnDisabled">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
