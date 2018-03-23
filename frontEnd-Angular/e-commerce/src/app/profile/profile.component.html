@@ -4,7 +4,7 @@
       <br>
       <div *ngIf="!data.user" class="m-auto">
         <h1 class="text-center display-3 mt-5" >
-          <i class="fa fa-spinner fa-spin">getting data</i>
+          <i class="fa fa-spinner fa-spin"></i>
         </h1>
       </div>
 
@@ -15,22 +15,22 @@
         <hr>
         <div class="col-md-8 ml-3">
           <h6 class="lead name">{{ user.data.name }}</h6>
-          <a routerLink="/profile/orders" class="btn btn-warning" >My orders</a>
-          <br> 
-          <a routerLink="/profile/setting" class="btn btn-info">Change your account settings</a>
-          <br>
-          <a routerLink="/profile/address" class="btn btn-outline-secondary">Change Shipping Adress</a>
+          <div class="j-flexbox">
+              <a routerLink="/profile/orders" class="btn btn-success" >My orders</a> 
+              <a routerLink="/profile/address" class="btn btn-outline-secondary">Change Shipping Adress</a>   
+              <a routerLink="/profile/setting" class="btn btn-info">Change your account settings</a>        
+          </div>   
           <hr>
-
-            <div *ngIf="data.user.isSeller">
-              <p class="lead">About Seller</p>
+          <div *ngIf="!data.user.isSeller">
+              <h3 class="info">If you want to sell something please register as a seller</h3>
+           </div>
+            <div *ngIf="data.user.isSeller" >
+              <p class="lead">Seller Section</p>       
+              <div class="col-md-6 mb-2" class="seller-flex">
+                <a routerLink="/profile/postproduct" class="btn btn-secondary">Sell a product</a>
+                <a routerLink="/profile/myproducts" class="btn btn-secondary">My products</a>
+              </div>
               <hr>
-              <div class="col-md-6 mb-2">
-                <a routerLink="/profile/postproduct" class="btn btn-success">Sell a product</a>
-              </div>
-              <div class="col-md-6">
-                <a routerLink="/profile/myproducts" class="btn btn-success">My products</a>
-              </div>
             </div>
         </div>
       </div>
