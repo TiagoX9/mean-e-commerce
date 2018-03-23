@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SettingComponent } from './setting/setting.component';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    SettingComponent
+    SettingComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,
