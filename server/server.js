@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
-const router = require('./routes/account');
+const userRouter = require('./routes/account');
+const mainRouter = require('./routes/main');
 
 const config = require('./config/config');
 
@@ -22,8 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cors());
 
-
-app.use('/api/account', router);
+app.use('/api', mainRouter);
+app.use('/api/account', userRouter);
 
 
 // const port = 2018;
