@@ -9,22 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
   categories: any;
+  newCategory = '';
+  btnDisabled = false;
 
   constructor(private data: DataService, private api: JApiService) { }
 
  async ngOnInit() {
-   console.log('triggered')
       try {
         const data = await this.api.getData('http://127.0.0.1:2018/api/categories');
 
         if (data['success']) {
-          console.log('got categories');;
           this.categories = data['category'];
         } else { this.data.error(data['message']); }
 
       } catch (err) {
         this.data.error(err['message']);
       }
+  }
+
+  async addCategory () {
+    this.btnDisabled = true;
+      try {
+        const data = await this.api.postData('http://127.0.0.1:2018/api/categories', {
+          category: this.newCategory
+        });
+
+        if (data['success']) {
+          this.data.success(data['message']);
+        } else {
+          this.data.error(data['message']);
+        }
+
+
+      } catch (err) {
+        this.data.error(err['message']);
+      }
+
+      this.btnDisabled = false;
   }
 
 }

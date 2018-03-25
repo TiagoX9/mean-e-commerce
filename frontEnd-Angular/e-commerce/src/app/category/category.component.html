@@ -17,6 +17,21 @@
    routerLink="/categories/{{ category._id }}"
    >{{ category.name }}</a>
  </div>
+
+ <hr>
+  <div class="card bg-light mt-3">
+    <div class="card-body">
+      <h4 class="card-title">Add new category</h4>
+      <br>
+      <form >
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="newCategory" class="form-control" [(ngModel)]="newCategory">
+        </div>  
+        <button type="button" (click)="addCategory()" class="btn btn-outline-success">Add</button>    
+      </form>
+    </div>
+  </div>
 </div>
 
 </section>
