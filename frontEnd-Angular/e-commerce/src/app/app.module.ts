@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingComponent } from './setting/setting.component';
 import { AddressComponent } from './address/address.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddressComponent } from './address/address.component';
     LoginComponent,
     ProfileComponent,
     SettingComponent,
-    AddressComponent
+    AddressComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
