@@ -22,6 +22,7 @@ import { SettingComponent } from './setting/setting.component';
 import { AddressComponent } from './address/address.component';
 import { CategoryComponent } from './category/category.component';
 import { PostProductComponent } from './post-product/post-product.component';
+import { MyProductComponent } from './my-product/my-product.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PostProductComponent } from './post-product/post-product.component';
     SettingComponent,
     AddressComponent,
     CategoryComponent,
-    PostProductComponent
+    PostProductComponent,
+    MyProductComponent
   ],
   imports: [
     BrowserModule,
