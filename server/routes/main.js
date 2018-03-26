@@ -83,5 +83,28 @@ router.route('/categories')
     });
  });
 
+
+ router.get('/product/:id', (req, res, next) => {
+     Product.findById({ _id: req.params.id })
+        .populate('category')
+        .populate('owner')
+        .exec((err, product) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: 'Error, product not found'
+                });
+            } else {
+                if (product) {
+                    res.json({
+                        success: true,
+                        message: 'Product successfully found',
+                        product: product
+                    });
+                }
+            }
+        });
+ });
+
  module.exports = router;
 
