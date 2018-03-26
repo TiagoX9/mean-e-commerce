@@ -6,19 +6,41 @@ const async = require('async');
 
 /////////////// testing async ///////////////////
 
-router.get('/test', (req, res, next) => {
-    function abc (callback) {
-        var firstName = 'Javid';
-        callback(null, firstName);
-    }
+router.get('/products', (req, res, next) => {
+    const perPage = 10;
+   const page = req.query.page;
+   async.parallel([
+       function (callback) {
+           Product.count({  }, (err, count) => {
+               let totalProducts = count;
+               callback(err, totalProducts);
+           });
+       },
+       function (callback) {
+           Product.find({  })
+               .skip(perPage * page)
+               .limit(perPage)
+               .populate('category')
+               .populate('owner')
+               .exec((err, products) => {
+                   if (err) return next(err);
+                   callback(err, products);
+               });
+       },
+      
+   ], function (err, results) {
+       let totalProducts = results[0];
+       let products = results[1];
 
-    function xyz (firstName, callback) {
-        var lastName = 'Abd';
-        console.log(`my firstname is ${firstName} and lastname ${lastName}`);
-    }
-
-    async.waterfall([abc, xyz])
-})
+       res.json({
+           success: true,
+           message: 'Successfully found products',
+           products: products,
+           totalProducts: totalProducts,
+           pages: Math.ceil(totalProducts / perPage)
+       });
+   });
+});
 
 
 router.route('/categories')
