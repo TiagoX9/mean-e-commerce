@@ -4,7 +4,7 @@ const Category = require('../models/category');
 const Product = require('../models/product');
 const async = require('async');
 
-/////////////// testing async ///////////////////
+
 
 router.get('/products', (req, res, next) => {
     const perPage = 10;
@@ -93,7 +93,6 @@ router.route('/categories')
         let totalProducts = results[0];
         let products = results[1];
         let category = results[2];
-
         res.json({
             success: true,
             message: 'Successfully found categories',
