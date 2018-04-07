@@ -3,7 +3,8 @@ const router = express.Router();
 const Category = require('../models/category');
 const Product = require('../models/product');
 const async = require('async');
-
+const Review = require('../models/review');
+const checkJWT = require('../middlewares/jwt');
 
 
 router.get('/products', (req, res, next) => {
@@ -126,6 +127,34 @@ router.route('/categories')
             }
         });
  });
+
+
+ router.post('/review', checkJWT, (req, res, next) => {
+     async.waterfall([
+         function (callback) {
+            Product.findOne({ _id: req.body.productId }, (err, product) => {
+                if (product) {
+                    callback(err, product);
+                }
+            })
+         },  function (product) {
+            let review = new Review();
+            review.owner = req.decoded.user._id;
+            if (req.body.title) review.title = req.body.title;
+            if (req.body.description) review.description = req.body.description;
+            review.rating = req.body.rating;
+
+            product.reviews.push(review._id);
+            product.save();
+            review.save();
+            res.json({
+                success: true,
+                message: 'successfully was reviewed'
+            })
+
+         }
+     ])
+ })
 
  module.exports = router;
 

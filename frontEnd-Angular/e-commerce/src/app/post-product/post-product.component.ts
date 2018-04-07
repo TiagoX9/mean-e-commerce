@@ -61,6 +61,7 @@ export class PostProductComponent implements OnInit {
 
   fileChange (event: any) {
    this.product.product_image = event.target.files[0];
+   console.log(event.target.files[0]);
   }
 
   async addProduct () {
@@ -77,7 +78,6 @@ export class PostProductComponent implements OnInit {
             }
           }
         }
-
         const data = await this.api.postData('http://127.0.0.1:2018/api/seller/products', form);
         if (data['success']) {
           this.data.success(data['message']);
