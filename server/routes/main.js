@@ -110,6 +110,8 @@ router.route('/categories')
      Product.findById({ _id: req.params.id })
         .populate('category')
         .populate('owner')
+        .populate('review')
+        .deepPopulate('reviews.owner')
         .exec((err, product) => {
             if (err) {
                 res.json({
