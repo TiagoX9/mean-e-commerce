@@ -6,6 +6,8 @@ const cors = require('cors');
 const userRouter = require('./routes/account');
 const mainRouter = require('./routes/main');
 const sellerRouter = require('./routes/seller');
+const searchRouter = require('./routes/search');
+
 
 const config = require('./config/config');
 
@@ -27,6 +29,7 @@ app.use(cors());
 app.use('/api', mainRouter);
 app.use('/api/account', userRouter);
 app.use('/api/seller', sellerRouter);
+app.use('/api/search', searchRouter);
 
 
 // const port = 2018;
