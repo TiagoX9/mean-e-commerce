@@ -9,6 +9,7 @@
   "author": "Javid Abdullayev",
   "license": "ISC",
   "dependencies": {
+    "algoliasearch": "^3.26.0",
     "async": "^2.6.0",
     "aws-sdk": "^2.213.1",
     "bcrypt-nodejs": "0.0.3",
