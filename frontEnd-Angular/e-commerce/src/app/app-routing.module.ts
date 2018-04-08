@@ -12,12 +12,14 @@ import { SettingComponent } from './setting/setting.component';
 import { CategoryComponent } from './category/category.component';
 import { PostProductComponent } from './post-product/post-product.component';
 import { ProductComponent } from './product/product.component';
+import { SearchComponent } from './search/search.component';
 
 // will be refactored, relaxxx
-// if you want to implement Lazy loading for opt then go ahead create features modules then add lazy childer
+// if you want to implement Lazy loading for opt then go ahead create features modules then add lazy children
 const routes: Routes = [
   { path: '', component: HomeComponent , pathMatch: 'full'},
   { path: 'categories', component: CategoryComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'categories/:id', component: Category1Component },
   { path: 'product/:id', component: ProductComponent },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },

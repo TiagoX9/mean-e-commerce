@@ -44,6 +44,20 @@ router.get('/products', (req, res, next) => {
 });
 
 
+router.delete('/product/:id', (req, res, next) => {
+    Product.findByIdAndRemove({_id: req.params.id})
+        .exec()
+        .then(deleted => {
+            res.json({
+                success: true,
+                message: 'product was deleted'
+            })
+           
+        })
+        .catch(err => console.log(`eeeeeerror: ${err}`))
+})
+
+
 router.route('/categories')
  .get((req, res, next) => {
      Category.find({}, (err, category) => {
