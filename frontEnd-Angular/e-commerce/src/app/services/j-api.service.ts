@@ -18,4 +18,9 @@ export class JApiService {
   postData (link: string, body: any) {
     return this.http.post(link, body, { headers: this.getHeaders() }).toPromise();
   }
+
+  deleteData (link: string) {
+    return this.http.delete(link, { headers: this.getHeaders() } );
+  }
+
 }
