@@ -15,6 +15,7 @@ export class MyProductComponent implements OnInit {
   constructor(private data: DataService, private api: JApiService, private router: Router) { }
 
    async ngOnInit() {
+     console.log(this.products);
     try {
       const data = await this.api.getData('http://127.0.0.1:2018/api/seller/products');
       if (data['success']) {
@@ -28,4 +29,13 @@ export class MyProductComponent implements OnInit {
     }
   }
 
+  onDelete(product) {
+    const url = `http://localhost:2018/api/product/${product._id}`;
+    this.products.forEach(pro => {
+      pro = this.products.splice(this.products.indexOf(product, 1));
+    });
+  }
+
 }
+
+
