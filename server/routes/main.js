@@ -120,6 +120,16 @@ router.route('/categories')
  });
 
 
+
+ router.delete('/categories/:id', (req, res, next) => {
+     Category.findByIdAndRemove({_id: req.params.id}, (err, category) => {
+            res.json({
+                success: true,
+                message: 'category was deleted'
+            })
+     })
+ })
+
  router.get('/product/:id', (req, res, next) => {
      Product.findById({ _id: req.params.id })
         .populate('category')
