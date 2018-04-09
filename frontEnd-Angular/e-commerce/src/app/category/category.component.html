@@ -15,7 +15,8 @@
  <div *ngIf="categories" class="list-group">
    <a *ngFor="let category of categories" class="list-group-item list-group-item-action" 
    routerLink="/categories/{{ category._id }}"
-   >{{ category.name }}</a>
+   >{{ category.name }}  <i  (click)="onDelete()" class="fa fa-trash-o" aria-hidden="true"></i>
+  </a>
  </div>
 
  <hr>
