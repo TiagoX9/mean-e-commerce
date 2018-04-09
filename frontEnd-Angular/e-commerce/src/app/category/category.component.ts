@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { JApiService } from './../services/j-api.service';
 import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,9 +13,10 @@ export class CategoryComponent implements OnInit {
   newCategory = '';
   btnDisabled = false;
 
-  constructor(private data: DataService, private api: JApiService) { }
+  constructor(private data: DataService, private api: JApiService, private router: Router) { }
 
  async ngOnInit() {
+
       try {
         const data = await this.api.getData('http://127.0.0.1:2018/api/categories');
 
@@ -40,12 +42,19 @@ export class CategoryComponent implements OnInit {
           this.data.error(data['message']);
         }
 
-
       } catch (err) {
         this.data.error(err['message']);
       }
 
       this.btnDisabled = false;
+  }
+
+  onDelete (d) {
+
+const url = `http://localhost:2018/api/categories/${d._id}`;
+    this.api.deleteData(url).subscribe(res => {
+   this.categories.splice(this.categories.indexOf(d), 1);
+    });
   }
 
 }
