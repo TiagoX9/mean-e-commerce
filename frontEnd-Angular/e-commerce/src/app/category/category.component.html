@@ -13,10 +13,27 @@
 
 
  <div *ngIf="categories" class="list-group">
-   <a *ngFor="let category of categories" class="list-group-item list-group-item-action" 
-   routerLink="/categories/{{ category._id }}"
-   >{{ category.name }}  <i  (click)="onDelete()" class="fa fa-trash-o" aria-hidden="true"></i>
-  </a>
+<div *ngFor="let category of categories">
+
+
+<div  class="list-group-item list-group-item-action" >
+  
+    <a routerLink="/categories/{{ category._id }}"
+  >{{ category.name }}  
+ </a>
+    <i (click)="onDelete(category)" class="fa fa-trash-o" aria-hidden="true"></i>
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
  </div>
 
  <hr>

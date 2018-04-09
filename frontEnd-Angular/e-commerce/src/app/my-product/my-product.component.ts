@@ -33,9 +33,9 @@ export class MyProductComponent implements OnInit {
     const url = `http://localhost:2018/api/product/${product._id}`;
     // there is a bug, want to fix? sharpen JS skills and go ahead
     this.api.deleteData(url).subscribe(res => {
-      this.products.forEach(pro => {
-        pro = this.products.splice(this.products.indexOf(product, 1));
-      });
+    
+         this.products.splice(this.products.indexOf(product), 1);
+    
     });
   }
 
