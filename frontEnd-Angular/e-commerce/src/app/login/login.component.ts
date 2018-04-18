@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
+// this is a bad way, dont validate like that
   validate() {
     if (this.email) {
        if (this.password ) {
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.data.error('Email is required');
     }
   }
-
+// in my real projects I never use Promises over Observables. I just tested Promises, it actually works ok, but observables just rock :)
  async login () {
    this.btnDisabled = true;
    try {
