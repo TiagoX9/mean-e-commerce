@@ -11,10 +11,13 @@ export class JApiService {
     return token ? new HttpHeaders().set('Authorization', token) : null;
   }
 
+  // I don't recommend to use Promises over Observables. I was just testing out.
   getData (link: string) {
     return this.http.get(link, { headers: this.getHeaders() }).toPromise();
   }
-
+  
+  
+  // Observables rocks ^^
   postData (link: string, body: any) {
     return this.http.post(link, body, { headers: this.getHeaders() }).toPromise();
   }
